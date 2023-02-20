@@ -1,0 +1,26 @@
+{
+  "name": "web_translator",
+  "version": "1.0.0",
+  "description": "Website multilang selector and translator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KD-MM2/Web_translator.git"
+  },
+  "keywords": [
+    "web"
+  ],
+  "author": "KD-MM2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KD-MM2/Web_translator/issues"
+  },
+  "homepage": "https://github.com/KD-MM2/Web_translator#readme",
+  "dependencies": {
+    "glob": "^8.1.0",
+    "google-translate-api": "^2.3.0"
+  }
+}
