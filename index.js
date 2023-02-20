@@ -1,3 +1,4 @@
+// https://developer.mozilla.org/ja/docs/Learn/Server-side/Node_server_without_framework
 var fs = require('fs');
 var http = require('http');
 var url = require('url');
@@ -18,6 +19,7 @@ glob.sync( './lang/*.json' ).forEach( function( file ) {
 });
 
 http.createServer(function (req, res) {
+  console.log('request ', req.url);
   var q = url.parse(req.url, true);
   var lang = 'en';
   let dash = q.pathname.split("/");
