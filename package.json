@@ -21,6 +21,6 @@
   "homepage": "https://github.com/KD-MM2/Web_translator#readme",
   "dependencies": {
     "glob": "^8.1.0",
-    "google-translate-api": "^2.3.0"
+    "node-fetch": "^2.6.9"
   }
 }
