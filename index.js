@@ -6,6 +6,7 @@ const glob = require("glob");
 const fetch = require("node-fetch");
 
 let language_dict = {};
+let eng = {};
 
 glob.sync("./lang/*.json").forEach(function (file) {
     let dash = file.split("/");
@@ -18,6 +19,11 @@ glob.sync("./lang/*.json").forEach(function (file) {
         });
       }
     }
+  });
+
+  fs.readFile('./lang/en.json', async function (err, data) {
+    eng = JSON.parse(data.toString());
+    console.log(eng);
   });
 
 http.createServer(function (request, response) {
