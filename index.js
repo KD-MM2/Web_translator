@@ -4,46 +4,58 @@ const path = require("path");
 const url = require("url");
 const glob = require("glob");
 const fetch = require("node-fetch");
+const translator = require("./translator-2.js");
 
 let language_dict = {};
-let eng = {};
 
-glob.sync("./lang/*.json").forEach(function (file) {
+function readLangFile() {
+  glob.sync("./lang/*.json").forEach(function (file) {
     let dash = file.split("/");
     if (dash.length == 3) {
       let dot = dash[2].split(".");
       if (dot.length == 2) {
         let lang = dot[0];
         fs.readFile(file, function (err, data) {
+          if(err) {
+
+          }
           language_dict[lang] = JSON.parse(data.toString());
         });
       }
     }
   });
-
-  fs.readFile('./lang/en.json', async function (err, data) {
-    eng = JSON.parse(data.toString());
-    console.log(eng);
-  });
+}
+readLangFile();
 
 http.createServer(function (request, response) {
+    //readLangFile();
     console.log("requesting ", request.url);
     var lang = "en";
 
     let supportedLanguages = ["en", "ja", "vi", "zh"];
 
     var filePath = "." + request.url;
+    var check = request.url.split("/");
     if (filePath == "./") {
       filePath = "./index.html";
     } else {
-      var check = request.url.split("/");
+      
       supportedLanguages.forEach(function (item) {
         if (check[1] == item) {
           lang = check[1];
           check.splice(1, 1);
           filePath = `.${check.join("/")}`;
+          if (filePath == "./" || filePath == ".") {
+            filePath = "./index.html";
+          }
         }
       });
+      // translator.translate(`'${check[1]}'`);
+      
+      /* if(!supportedLanguages.includes(check[1])){
+        translator.translate(`'${check[1]}'`);
+        readLangFile();
+      } */
     }
 
     var extname = String(path.extname(filePath)).toLowerCase();
@@ -79,6 +91,7 @@ http.createServer(function (request, response) {
           response.end("Sorry, check with the site admin for error: " + error.code + "..\n");
         } 
       } else {
+        readLangFile();
         response.writeHead(200, { "Content-Type": `${contentType}; charset=utf-8`, });
         if (contentType == "text/html") {
           let data_string = content.toString();
