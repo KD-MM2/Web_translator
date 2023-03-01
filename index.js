@@ -6,6 +6,8 @@ const glob = require("glob");
 const fetch = require("node-fetch");
 const translator = require("./translator-2.js");
 
+let rawLangData;
+let supportedLanguages = [];
 let language_dict = {};
 
 function readLangFile() {
@@ -16,47 +18,43 @@ function readLangFile() {
       if (dot.length == 2) {
         let lang = dot[0];
         fs.readFile(file, function (err, data) {
-          if(err) {
-
-          }
           language_dict[lang] = JSON.parse(data.toString());
         });
       }
     }
   });
+  rawLangData = fs.readFileSync('./supportedLanguages.json');
+  supportedLanguages = JSON.parse(rawLangData);
+
 }
 readLangFile();
 
-http.createServer(function (request, response) {
-    //readLangFile();
+http.createServer(async function (request, response) {
+    readLangFile();
     console.log("requesting ", request.url);
     var lang = "en";
 
-    let supportedLanguages = ["en", "ja", "vi", "zh"];
+    //let supportedLanguages = ["en", "ja", "vi", "zh", "de"];
 
     var filePath = "." + request.url;
-    var check = request.url.split("/");
-    if (filePath == "./") {
-      filePath = "./index.html";
-    } else {
-      
-      supportedLanguages.forEach(function (item) {
-        if (check[1] == item) {
-          lang = check[1];
-          check.splice(1, 1);
-          filePath = `.${check.join("/")}`;
-          if (filePath == "./" || filePath == ".") {
-            filePath = "./index.html";
-          }
-        }
-      });
-      // translator.translate(`'${check[1]}'`);
-      
-      /* if(!supportedLanguages.includes(check[1])){
-        translator.translate(`'${check[1]}'`);
+    var check = filePath.split("/");
+    if(check[1].length == 2){
+      lang = check[1];
+      if(!supportedLanguages.includes(check[1])){
+        await translator.translate(check[1]);
+        await new Promise(r => setTimeout(r, 5000));
         readLangFile();
-      } */
+      }
+      check.splice(1, 1);
+      if(check.join('/') == './' || check.join('/') == '.') {
+        filePath = "./index.html";
+      } else {
+        filePath = check.join("/");
+      }
+    } else if(check[1].length < 2) {
+      filePath = "./index.html";
     }
+    
 
     var extname = String(path.extname(filePath)).toLowerCase();
     var mimeTypes = {
@@ -78,7 +76,6 @@ http.createServer(function (request, response) {
       ".wasm": "application/wasm",
     };
     var contentType = mimeTypes[extname] || "application/octet-stream";
-
     fs.readFile(filePath, async function (error, content) {
       if (error) {
         if (error.code == "ENOENT") {

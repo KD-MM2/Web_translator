@@ -21,6 +21,11 @@
   "homepage": "https://github.com/KD-MM2/Web_translator#readme",
   "dependencies": {
     "glob": "^8.1.0",
-    "node-fetch": "^2.6.9"
+    "http-proxy-agent": "^5.0.0",
+    "https-proxy-agent": "^5.0.1",
+    "node-fetch": "^2.6.9",
+    "node-fetch-with-proxy": "^0.1.6",
+    "pm2": "^5.2.2",
+    "proxy-agent": "^5.0.0"
   }
 }

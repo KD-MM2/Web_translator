@@ -1,347 +1,494 @@
 <!DOCTYPE html>
 <!-- saved from url=(0069)https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>W3.CSS Template</title>
+<html>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./index_files/w3.css">
-<link rel="stylesheet" href="./index_files/css">
-<link rel="stylesheet" href="./index_files/css-1">
-<link rel="stylesheet" href="./index_files/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
-/>
-<style>
-.w3-sidebar a {font-family: "Roboto", sans-serif}
-body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>W3.CSS Template</title>
 
-.kd {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: flex;
-  min-height: 100vh;
-  background: #fafafa;
-}
-.dropdown {
-  position: relative;
-  width: 300px;
-  height: 50px;
-}
-.dropdown::before {
-  content: '';
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  z-index: 10000; 
-  width: 8px;
-  height: 8px;
-  border: 2px solid #333;
-  border-top: 2px solid #ffff;
-  border-right: 2px solid #ffff;
-  transform: rotate(-45deg);
-  transition: 0.5s;
-  pointer-events: none;
-}
-.dropdown.active::before {
-  top: 22px;
-  transform: rotate(-255deg);
-}
-.dropdown input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  padding: 12px 20px;
-  border-radius: 10px;
-  
-}
-.dropdown .option {
-  position: absolute;
-  top: 70px;
-  width: 100%;
-  background: #ffff;
-  border-radius: 10px;
-  overflow: hidden;
-  display: none;
-}
-.dropdown.active .option{
-  display: block;
-}
-.dropdown .option div {
-  padding: 12px 20px;
-  cursor: pointer;
-}
-.dropdown .option div:hover {
-  background: #62baea;
-  color: #ffff;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./index_files/w3.css">
+  <link rel="stylesheet" href="./index_files/css">
+  <link rel="stylesheet" href="./index_files/css-1">
+  <link rel="stylesheet" href="./index_files/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css" />
+  <style>
+    .w3-sidebar a {
+      font-family: "Roboto", sans-serif
+    }
 
-</style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .w3-wide {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .kd {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      min-height: 100vh;
+      background: #fafafa;
+    }
+
+    .dropdown {
+      position: relative;
+      width: 300px;
+      height: 50px;
+    }
+
+    .dropdown::before {
+      content: '';
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      z-index: 10000;
+      width: 8px;
+      height: 8px;
+      border: 2px solid #333;
+      border-top: 2px solid #ffff;
+      border-right: 2px solid #ffff;
+      transform: rotate(-135deg);
+      transition: 0.5s;
+      pointer-events: none;
+    }
+
+    .dropdown.active::before {
+      top: 22px;
+      transform: rotate(-45deg);
+      transition: 0.2s;
+    }
+
+    .dropdown input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+
+    }
+
+    .dropdown .option {
+      position: absolute;
+      top: 70px;
+      width: 100%;
+      background: #ffff;
+      border-radius: 10px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .dropdown.active .option {
+      display: block;
+    }
+
+    .dropdown .option div {
+      padding: 12px 20px;
+      cursor: pointer;
+    }
+
+    .dropdown .option div:hover {
+      background: #62baea;
+      color: #ffff;
+    }
+    
+    .button {
+      font-size: 1em;
+      padding: 10px;
+      color: #000000;
+      border-radius: 20px/50px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease-out;
+    }
+    .button:hover {
+      color: #fff;
+    }
+    
+    .overlay {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.7);
+      transition: opacity 500ms;
+      visibility: hidden;
+      opacity: 0;
+    }
+    .overlay:target {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .popup {
+      margin: 70px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 5px;
+      width: 30%;
+      position: relative;
+      transition: all 5s ease-in-out;
+    }
+    
+    .popup h2 {
+      margin-top: 0;
+      color: #333;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+    .popup .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      transition: all 200ms;
+      font-size: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #333;
+    }
+    .popup .close:hover {
+      color: #06D85F;
+    }
+    .popup .content {
+      max-height: 30%;
+      overflow: auto;
+    }
+    
+    @media screen and (max-width: 700px){
+      .box{
+        width: 70%;
+      }
+      .popup{
+        width: 70%;
+      }
+    }
+  </style>
 </head>
-<body class="w3-content" style="max-width:1200px">
 
-<!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
-  <div class="w3-container w3-display-container w3-padding-16">
-    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-    <h3 class="w3-wide"><b>LOGO</b></h3>
-  </div>
-  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-    <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button">{{shirts}}</a>
-    <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button">{{dresses}}</a>
-    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-      {{jeans}} <i class="fa fa-caret-down"></i>
-    </a>
-    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium w3-show">
-      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>{{skinny}}</a>
-      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button">{{relaxed}}</a>
-      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button">{{bootcut}}</a>
-      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button">{{straight}}</a>
+<body class="w3-content" style="max-width:1200px">
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+    <div class="w3-container w3-display-container w3-padding-16">
+      <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+      <h3 class="w3-wide"><b>LOGO</b></h3>
     </div>
-    <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button">{{jackets}}</a>
-    <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button">{{gymwear}}</a>
-    <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button">{{blazers}}</a>
-    <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#" class="w3-bar-item w3-button">{{shoes}}</a>
-  </div>
-  <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#footer" class="w3-bar-item w3-button w3-padding">{{contact}}</a> 
-  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById(&#39;newsletter&#39;).style.display=&#39;block&#39;">{{newsletter}}</a> 
-  <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#footer" class="w3-bar-item w3-button w3-padding">{{subscribe}}</a>
-  <div class="kd">
-    <div class="dropdown">
-      <input type="text" class="textBox" placeholder="Select language" readonly>
-      <div class="option">
-        <div onclick="show('English','en')"><span class="fi fi-us"></span>English</div>
-        <div onclick="show('日本語', 'ja')"><span class="fi fi-jp"></span>日本語</div>
-        <div onclick="show('中文', 'zh')"><span class="fi fi-cn"></span>中文</div>
-        <div onclick="show('Tiếng Việt', 'vi')"><span class="fi fi-vn"></span>Tiếng Việt</div>
+    <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+        class="w3-bar-item w3-button">{{shirts}}</a>
+      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+        class="w3-bar-item w3-button">{{dresses}}</a>
+      <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+        {{jeans}} <i class="fa fa-caret-down"></i>
+      </a>
+      <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium w3-show">
+        <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+          class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>{{skinny}}</a>
+        <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+          class="w3-bar-item w3-button">{{relaxed}}</a>
+        <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+          class="w3-bar-item w3-button">{{bootcut}}</a>
+        <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+          class="w3-bar-item w3-button">{{straight}}</a>
+      </div>
+      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+        class="w3-bar-item w3-button">{{jackets}}</a>
+      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+        class="w3-bar-item w3-button">{{gymwear}}</a>
+      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+        class="w3-bar-item w3-button">{{blazers}}</a>
+      <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#"
+        class="w3-bar-item w3-button">{{shoes}}</a>
+    </div>
+    <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#footer"
+      class="w3-bar-item w3-button w3-padding">{{contact}}</a>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding"
+      onclick="document.getElementById(&#39;newsletter&#39;).style.display=&#39;block&#39;">{{newsletter}}</a>
+    <a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#footer"
+      class="w3-bar-item w3-button w3-padding">{{subscribe}}</a>
+    <div class="kd">
+      <div class="dropdown">
+        <input type="text" class="textBox" placeholder="Select language" readonly>
+        <div class="option">
+          <div onclick="show('English','en')"><span class="fi fi-us"></span>English</div>
+          <div onclick="show('日本語', 'ja')"><span class="fi fi-jp"></span>日本語</div>
+          <div onclick="show('中文', 'zh')"><span class="fi fi-cn"></span>中文</div>
+          <div onclick="show('Tiếng Việt', 'vi')"><span class="fi fi-vn"></span>Tiếng Việt</div>
+          <div onclick="show('Deutsch', 'de')"><span class="fi fi-de"></span>Deutsch</div>
+          <div><a class="button" href="#popup1">Let me Pop up</a></div>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+    </div>
+    </div>
+  </nav>
 
-<!-- Top menu on small screens -->
-<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-  <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
-  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-</header>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:250px">
-
-  <!-- Push down content on small screens -->
-  <div class="w3-hide-large" style="margin-top:83px"></div>
-  
-  <!-- Top header -->
-  <header class="w3-container w3-xlarge">
-    <p class="w3-left">{{jeans}}</p>
-    <p class="w3-right">
-      <i class="fa fa-shopping-cart w3-margin-right"></i>
-      <i class="fa fa-search"></i>
-    </p>
+  <!-- Top menu on small screens -->
+  <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+    <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i
+        class="fa fa-bars"></i></a>
   </header>
 
-  <!-- Image header -->
-  <div class="w3-display-container w3-container">
-    <img src="./index_files/jeans.jpg" alt="Jeans" style="width:100%">
-    <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
-      <h1 class="w3-jumbo w3-hide-small">{{newarrivals}}</h1>
-      <h1 class="w3-hide-large w3-hide-medium">{{newarrivals}}</h1>
-      <h1 class="w3-hide-small">{{collection2016}}</h1>
-      <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#jeans" class="w3-button w3-black w3-padding-large w3-large">{{shopnow}}</a></p>
-    </div>
-  </div>
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu"
+    id="myOverlay"></div>
 
-  <div class="w3-container w3-text-grey" id="jeans">
-    <p>{{items}}</p>
-  </div>
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:250px">
 
-  <!-- Product grid -->
-  <div class="w3-row w3-grayscale">
-    <div class="w3-col l3 s6">
-      <div class="w3-container">
-        <img src="./index_files/jeans1.jpg" style="width:100%">
-        <p>{{rippedskinnyjeans}}<br><b>$24.99</b></p>
+    <!-- Push down content on small screens -->
+    <div class="w3-hide-large" style="margin-top:83px"></div>
+
+    <!-- Top header -->
+    <header class="w3-container w3-xlarge">
+      <p class="w3-left">{{jeans}}</p>
+      <p class="w3-right">
+        <i class="fa fa-shopping-cart w3-margin-right"></i>
+        <i class="fa fa-search"></i>
+      </p>
+    </header>
+
+    <!-- Image header -->
+    <div class="w3-display-container w3-container">
+      <img src="./index_files/jeans.jpg" alt="Jeans" style="width:100%">
+      <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+        <h1 class="w3-jumbo w3-hide-small">{{newarrivals}}</h1>
+        <h1 class="w3-hide-large w3-hide-medium">{{newarrivals}}</h1>
+        <h1 class="w3-hide-small">{{collection2016}}</h1>
+        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#jeans"
+            class="w3-button w3-black w3-padding-large w3-large">{{shopnow}}</a></p>
       </div>
-      <div class="w3-container">
-        <img src="./index_files/jeans2.jpg" style="width:100%">
-        <p>{{megarippedjeans}}<br><b>$19.99</b></p>
-      </div>
     </div>
 
-    <div class="w3-col l3 s6">
-      <div class="w3-container">
-        <div class="w3-display-container">
+    <div class="w3-container w3-text-grey" id="jeans">
+      <p>{{items}}</p>
+    </div>
+
+    <!-- Product grid -->
+    <div class="w3-row w3-grayscale">
+      <div class="w3-col l3 s6">
+        <div class="w3-container">
+          <img src="./index_files/jeans1.jpg" style="width:100%">
+          <p>{{rippedskinnyjeans}}<br><b>$24.99</b></p>
+        </div>
+        <div class="w3-container">
           <img src="./index_files/jeans2.jpg" style="width:100%">
-          <span class="w3-tag w3-display-topleft">{{new}}</span>
-          <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">{{buynow}} <i class="fa fa-shopping-cart"></i></button>
-          </div>
+          <p>{{megarippedjeans}}<br><b>$19.99</b></p>
         </div>
-        <p>{{megarippedjeans}}<br><b>$19.99</b></p>
       </div>
-      <div class="w3-container">
-        <img src="./index_files/jeans3.jpg" style="width:100%">
-        <p>{{washedskinnyjeans}}<br><b>$20.50</b></p>
-      </div>
-    </div>
 
-    <div class="w3-col l3 s6">
-      <div class="w3-container">
-        <img src="./index_files/jeans3.jpg" style="width:100%">
-        <p>{{washedskinnyjeans}}<br><b>$20.50</b></p>
+      <div class="w3-col l3 s6">
+        <div class="w3-container">
+          <div class="w3-display-container">
+            <img src="./index_files/jeans2.jpg" style="width:100%">
+            <span class="w3-tag w3-display-topleft">{{new}}</span>
+            <div class="w3-display-middle w3-display-hover">
+              <button class="w3-button w3-black">{{buynow}} <i class="fa fa-shopping-cart"></i></button>
+            </div>
+          </div>
+          <p>{{megarippedjeans}}<br><b>$19.99</b></p>
+        </div>
+        <div class="w3-container">
+          <img src="./index_files/jeans3.jpg" style="width:100%">
+          <p>{{washedskinnyjeans}}<br><b>$20.50</b></p>
+        </div>
       </div>
-      <div class="w3-container">
-        <div class="w3-display-container">
+
+      <div class="w3-col l3 s6">
+        <div class="w3-container">
+          <img src="./index_files/jeans3.jpg" style="width:100%">
+          <p>{{washedskinnyjeans}}<br><b>$20.50</b></p>
+        </div>
+        <div class="w3-container">
+          <div class="w3-display-container">
+            <img src="./index_files/jeans4.jpg" style="width:100%">
+            <span class="w3-tag w3-display-topleft">{{sale}}</span>
+            <div class="w3-display-middle w3-display-hover">
+              <button class="w3-button w3-black">{{buynow}} <i class="fa fa-shopping-cart"></i></button>
+            </div>
+          </div>
+          <p>{{vintageskinnyjeans}}<br><b class="w3-text-red">$14.99</b></p>
+        </div>
+      </div>
+
+      <div class="w3-col l3 s6">
+        <div class="w3-container">
           <img src="./index_files/jeans4.jpg" style="width:100%">
-          <span class="w3-tag w3-display-topleft">{{sale}}</span>
-          <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">{{buynow}} <i class="fa fa-shopping-cart"></i></button>
-          </div>
+          <p>{{vintageskinnyjeans}}<br><b>$14.99</b></p>
         </div>
-        <p>{{vintageskinnyjeans}}<br><b class="w3-text-red">$14.99</b></p>
+        <div class="w3-container">
+          <img src="./index_files/jeans1.jpg" style="width:100%">
+          <p>{{rippedskinnyjeans}}<br><b>$24.99</b></p>
+        </div>
       </div>
     </div>
 
-    <div class="w3-col l3 s6">
-      <div class="w3-container">
-        <img src="./index_files/jeans4.jpg" style="width:100%">
-        <p>{{vintageskinnyjeans}}<br><b>$14.99</b></p>
+    <!-- Subscribe section -->
+    <div class="w3-container w3-black w3-padding-32">
+      <h1>{{subscribe}}</h1>
+      <p>{{specialoffer}}</p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
+      <button type="button" class="w3-button w3-red w3-margin-bottom">{{subscribe}}</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+      <div class="w3-row-padding">
+        <div class="w3-col s4">
+          <h4>{{contact}}</h4>
+          <p>{{qa}}</p>
+          <form action="https://www.w3schools.com/action_page.php" target="_blank">
+            <p><input class="w3-input w3-border" type="text" placeholder={{name}} name=Name required=""></p>
+            <p><input class="w3-input w3-border" type="text" placeholder={{email}} name=Email required=""></p>
+            <p><input class="w3-input w3-border" type="text" placeholder={{subject}} name=Subject required=""></p>
+            <p><input class="w3-input w3-border" type="text" placeholder={{message}} name="Message" required=""></p>
+            <button type="submit" class="w3-button w3-block w3-black">{{send}}</button>
+          </form>
+        </div>
+
+        <div class="w3-col s4">
+          <h4>{{about}}</h4>
+          <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{aboutus}}</a></p>
+          <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{hr}}</a></p>
+          <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{support}}</a></p>
+          <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{findstore}}</a></p>
+          <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{shipment}}</a></p>
+          <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{payment}}</a></p>
+          <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{gftc}}</a></p>
+          <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{rt}}</a></p>
+          <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{help}}</a></p>
+        </div>
+
+        <div class="w3-col s4 w3-justify">
+          <h4>{{store}}</h4>
+          <p><i class="fa fa-fw fa-map-marker"></i> {{compname}}</p>
+          <p><i class="fa fa-fw fa-phone"></i> {{compphone}}</p>
+          <p><i class="fa fa-fw fa-envelope"></i> {{compemail}}</p>
+          <h4>{{weacpt}}</h4>
+          <p><i class="fa fa-fw fa-cc-amex"></i> {{amex}}</p>
+          <p><i class="fa fa-fw fa-credit-card"></i> {{crecard}}</p>
+          <br>
+          <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
+          <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
+          <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>
+          <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>
+          <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
+          <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>
+        </div>
       </div>
-      <div class="w3-container">
-        <img src="./index_files/jeans1.jpg" style="width:100%">
-        <p>{{rippedskinnyjeans}}<br><b>$24.99</b></p>
+    </footer>
+
+    <div class="w3-black w3-center w3-padding-24">{{powered}} <a href="https://www.w3schools.com/w3css/default.asp"
+        title="W3.CSS" target="_blank" class="w3-hover-opacity">{{w3css}}</a></div>
+
+    <!-- End page content -->
+  </div>
+
+  <!-- Newsletter Modal -->
+  <div id="newsletter" class="w3-modal">
+    <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
+      <div class="w3-container w3-white w3-center">
+        <i onclick="document.getElementById(&#39;newsletter&#39;).style.display=&#39;none&#39;"
+          class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
+        <h2 class="w3-wide">{{newsletter}}</h2>
+        <p>{{offers}}</p>
+        <p><input class="w3-input w3-border" type="text" placeholder={{entemail}}></p>
+        <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom"
+          onclick="document.getElementById(&#39;newsletter&#39;).style.display=&#39;none&#39;">{{subscribe}}</button>
       </div>
     </div>
   </div>
+  <script>
+    
+    function readTextFile(file, callback) {
+      var rawFile = new XMLHttpRequest();
+      rawFile.overrideMimeType("application/json");
+      rawFile.open("GET", file, true);
+      rawFile.onreadystatechange = function () {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+          callback(rawFile.responseText);
+        }
+      }
+      //rawFile.send(null);
+    }
 
-  <!-- Subscribe section -->
-  <div class="w3-container w3-black w3-padding-32">
-    <h1>{{subscribe}}</h1>
-    <p>{{specialoffer}}</p>
-    <p><input class="w3-input w3-border" type="text" placeholder="Enter e-mail" style="width:100%"></p>
-    <button type="button" class="w3-button w3-red w3-margin-bottom">{{subscribe}}</button>
-  </div>
-  
-  <!-- Footer -->
-  <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
-    <div class="w3-row-padding">
-      <div class="w3-col s4">
-        <h4>{{contact}}</h4>
-        <p>{{qa}}</p>
-        <form action="https://www.w3schools.com/action_page.php" target="_blank">
-          <p><input class="w3-input w3-border" type="text" placeholder={{name}} name=Name required=""></p>
-          <p><input class="w3-input w3-border" type="text" placeholder={{email}} name=Email required=""></p>
-          <p><input class="w3-input w3-border" type="text" placeholder={{subject}} name=Subject required=""></p>
-          <p><input class="w3-input w3-border" type="text" placeholder={{message}} name="Message" required=""></p>
-          <button type="submit" class="w3-button w3-block w3-black">{{send}}</button>
-        </form>
-      </div>
+    let supportedLanguages = [];
 
-      <div class="w3-col s4">
-        <h4>{{about}}</h4>
-        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{aboutus}}</a></p>
-        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{hr}}</a></p>
-        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{support}}</a></p>
-        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{findstore}}</a></p>
-        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{shipment}}</a></p>
-        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{payment}}</a></p>
-        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{gftc}}</a></p>
-        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{rt}}</a></p>
-        <p><a href="https://www.w3schools.com/w3css/tryw3css_templates_clothing_store.htm#">{{help}}</a></p>
-      </div>
+    readTextFile("./supportedLanguages.json", function (text) {
+      var data = JSON.parse(text);
+      console.log(data);
+      supportedLanguages = JSON.parse(data);
+    });
 
-      <div class="w3-col s4 w3-justify">
-        <h4>{{store}}</h4>
-        <p><i class="fa fa-fw fa-map-marker"></i> {{compname}}</p>
-        <p><i class="fa fa-fw fa-phone"></i> {{compphone}}</p>
-        <p><i class="fa fa-fw fa-envelope"></i> {{compemail}}</p>
-        <h4>{{weacpt}}</h4>
-        <p><i class="fa fa-fw fa-cc-amex"></i> {{amex}}</p>
-        <p><i class="fa fa-fw fa-credit-card"></i> {{crecard}}</p>
-        <br>
-        <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
-        <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
-        <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>
-        <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>
-        <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
-        <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>
-      </div>
-    </div>
-  </footer>
+    Array.prototype.insert = function (index, ...items) {
+      this.splice(index, 0, ...items);
+    };
 
-  <div class="w3-black w3-center w3-padding-24">{{powered}} <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">{{w3css}}</a></div>
-
-  <!-- End page content -->
-</div>
-
-<!-- Newsletter Modal -->
-<div id="newsletter" class="w3-modal">
-  <div class="w3-modal-content w3-animate-zoom" style="padding:32px">
-    <div class="w3-container w3-white w3-center">
-      <i onclick="document.getElementById(&#39;newsletter&#39;).style.display=&#39;none&#39;" class="fa fa-remove w3-right w3-button w3-transparent w3-xxlarge"></i>
-      <h2 class="w3-wide">{{newsletter}}</h2>
-      <p>{{offers}}</p>
-      <p><input class="w3-input w3-border" type="text" placeholder={{entemail}}></p>
-      <button type="button" class="w3-button w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById(&#39;newsletter&#39;).style.display=&#39;none&#39;">{{subscribe}}</button>
-    </div>
-  </div>
-</div>
-<script>
-  Array.prototype.insert = function ( index, ...items ) {
-    this.splice( index, 0, ...items );
-  };
-
-  let supportedLanguages = ["en", "ja", "vi", "zh"];
-  function show(sel, lan) {
-    document.querySelector('.textBox').value = sel;
-    localStorage.setItem("lang", lan);
-    let editedPath = window.location.pathname.split("/");
-      if(editedPath[1].length > 2) {
+    //let supportedLanguages = ["en", "ja", "vi", "zh"];
+    function show(sel, lan) {
+      document.querySelector('.textBox').value = sel;
+      localStorage.setItem("lang", lan);
+      let editedPath = window.location.pathname.split("/");
+      if (editedPath[1].length > 2) {
         editedPath.insert(1, lan);
       } else {
-        editedPath.splice(1,1);
+        editedPath.splice(1, 1);
         editedPath.insert(1, lan);
       }
       editedPath = editedPath.join("/");
       window.location.pathname = editedPath;
-  }
+    }
 
-  let dropdown = document.querySelector('.dropdown');
-  dropdown.onclick = function() {
-    dropdown.classList.toggle('active');
-  }
-// Accordion 
-function myAccFunc() {
-  var x = document.getElementById("demoAcc");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else {
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
+    let dropdown = document.querySelector('.dropdown');
+    dropdown.onclick = function () {
+      dropdown.classList.toggle('active');
+    }
+    // Accordion 
+    function myAccFunc() {
+      var x = document.getElementById("demoAcc");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
 
-// Click on the "Jeans" link on page load to open the accordion for demo purposes
-document.getElementById("myBtn").click();
-
-
-// Open and close sidebar
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
-}
- 
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
-</script>
+    // Click on the "Jeans" link on page load to open the accordion for demo purposes
+    document.getElementById("myBtn").click();
 
 
-</body></html>
+    // Open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+  </script>
+
+  <div id="popup1" class="overlay">
+    <div class="popup">
+      <h2>Select the language you want translate to: </h2>
+      <a class="close" href="#">&times;</a>
+      <div class="content">
+        Thank to pop me out of that button, but now i'm done so you can close this window.
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
