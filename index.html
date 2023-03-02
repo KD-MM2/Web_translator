@@ -133,11 +133,11 @@
     }
     
     .popup {
-      margin: 70px auto;
-      padding: 20px;
+      margin: 20px auto;
+      padding: 10px;
       background: #fff;
       border-radius: 5px;
-      width: 30%;
+      width: 50%;
       position: relative;
       transition: all 5s ease-in-out;
     }
@@ -409,28 +409,9 @@
       </div>
     </div>
   </div>
+  
   <script>
     
-    function readTextFile(file, callback) {
-      var rawFile = new XMLHttpRequest();
-      rawFile.overrideMimeType("application/json");
-      rawFile.open("GET", file, true);
-      rawFile.onreadystatechange = function () {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-          callback(rawFile.responseText);
-        }
-      }
-      //rawFile.send(null);
-    }
-
-    let supportedLanguages = [];
-
-    readTextFile("./supportedLanguages.json", function (text) {
-      var data = JSON.parse(text);
-      console.log(data);
-      supportedLanguages = JSON.parse(data);
-    });
-
     Array.prototype.insert = function (index, ...items) {
       this.splice(index, 0, ...items);
     };
@@ -484,11 +465,41 @@
     <div class="popup">
       <h2>Select the language you want translate to: </h2>
       <a class="close" href="#">&times;</a>
-      <div class="content">
-        Thank to pop me out of that button, but now i'm done so you can close this window.
+      <div id="lang_list" class="content">
       </div>
     </div>
   </div>
+  <script type="text/javascript" language="javascript" src="lang_list.json"></script> 
+  <script>
+    var llist = document.getElementById("lang_list");
+    var star = document.createElement("a");
+    star.innerText = "*";
+    /* for (var i = 0; i < 5; i++){
+      
+      for(var j = 0; j < LangList.length; j++){
+        //var star = document.createElement("a");
+        //star.innerText = "*";
+        //llist.appendChild(star);
+        var langlink = document.createElement("a");
+        langlink.innerText = LangList[i].name + " ";
+        llist.appendChild(langlink);
+      }
+        
+    llist.appendChild(document.createElement("br"));
+    }*/
+    for(var i = 0; i < 10; i++){
+      for(var j = 0; j < LangList.length; j++){
+        var star = document.createElement("a");
+        
+        star.innerText = "*";
+        llist.appendChild(star);
+      }
+      llist.appendChild(document.createElement("br"));
+    }
+
+
+    console.log(window.location.pathname);
+  </script>
 </body>
 
 </html>
